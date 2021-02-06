@@ -29,26 +29,26 @@
             </div>
         </form>
         <div class="weather-status text-white text-center">
-            <img id="icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
-            <h1 id="show-city">Dhaka</h1>
-            <h3><span id="show-temperature">25.06</span>&deg;C</h3>
-            <h1 id="weather-status" class="lead">Clouds</h1>
+            <img id="weather-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 id="display-city">Dhaka</h1>
+            <h3><span id="display-temperature">25.06</span>&deg;C</h3>
+            <h1 id="weather-condition" class="lead">Clouds</h1>
         </div>
     </div>
 
     <script>
-        const apiKey = '51281fa59ac3595e515343e2de306776';
-        const apiBase = 'https://api.openweathermap.org/data/2.5/weather';
+        const myApiKey = '51281fa59ac3595e515343e2de306776';
+        const apiWeatherLink = 'https://api.openweathermap.org/data/2.5/weather';
 
         const getWeatherData = city => {
-            const url = `${apiBase}?q=${city}&units=metric&appid=${apiKey}`;
+            const url = `${apiWeatherLink}?q=${city}&units=metric&appid=${myApiKey}`;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("show-city").innerText = data.name || "Unknown Location";
-                    document.getElementById("show-temperature").innerText = data.main.temp;
-                    document.getElementById("weather-status").innerText = data.weather[0].main;
-                    document.getElementById("icon").setAttribute("src", `https://openweathermap.org/img/wn/02d@2x.png`);
+                    document.getElementById("display-city").innerText = data.name || "Location not found";
+                    document.getElementById("display-temperature").innerText = data.main.temp;
+                    document.getElementById("weather-condition").innerText = data.weather[0].main;
+                    document.getElementById("weather-icon").setAttribute("src", `https://openweathermap.org/img/wn/02d@2x.png`);
                     document.getElementById("search-button").value = "";
                 })
         }
